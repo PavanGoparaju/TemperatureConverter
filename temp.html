@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="temp.css">    
+  </head>
+  <body>
+    <header>
+      <h1>Temperature Converter</h1>
+    </header>
+    <div id="main">
+      <form>
+        <label for="celsius">Celsius:</label>
+        <input type="number" id="celsius" placeholder="Enter Temperature in Celsius...">
+        <label for="fahrenheit">Fahrenheit:</label>
+        <input type="number" id="fahrenheit" placeholder="Enter Temperature in Fahrenheit...">
+        <button type="button" id="convert">Convert</button>
+        <div id="result"></div>
+      </form>
+    </div>
+    <script>
+      const celsiusInput = document.getElementById("celsius");
+      const fahrenheitInput = document.getElementById("fahrenheit");
+      const convertBtn = document.getElementById("convert");
+      const resultDiv = document.getElementById("result");
+      
+      function convertCelsiusToFahrenheit(celsius) {
+        return (celsius * 9/5) + 32;
+      }
+      
+      function convertFahrenheitToCelsius(fahrenheit) {
+        return (fahrenheit - 32) * 5/9;
+      }
+      
+      convertBtn.addEventListener("click", () => {
+        if (celsiusInput.value) {
+          const celsius = parseFloat(celsiusInput.value);
+          const fahrenheit = convertCelsiusToFahrenheit(celsius);
+          resultDiv.textContent = `${celsius} degrees Celsius is equal to ${fahrenheit.toFixed(1)} degrees Fahrenheit.`;
+          fahrenheitInput.value = fahrenheit.toFixed(1);
+        } else if (fahrenheitInput.value) {
+          const fahrenheit = parseFloat(fahrenheitInput.value);
+          const celsius = convertFahrenheitToCelsius(fahrenheit);
+          resultDiv.textContent = `${fahrenheit} degrees Fahrenheit is equal to ${celsius.toFixed(1)} degrees Celsius.`;
+          celsiusInput.value = celsius.toFixed(1);
+        } else {
+            resultDiv.textContent = "Hey!!!Enter a Temperature to convert.";
+        }
+        });
+    </script>
+</body>
+</html>
